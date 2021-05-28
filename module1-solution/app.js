@@ -6,29 +6,23 @@
     LunchCheckController.$inject= ['$scope'];
     function LunchCheckController($scope){
         $scope.items = "";
-        $scope.numberItems =0;
         $scope.message = "";
-        
-        $scope.checkList = function(){
-            if($scope.items  !== ""){
-                var list = $scope.items.split(',');
-            $scope.numberItems = list.length;
+
+        $scope.checkIfTooMuch = function(){
+            if(!$scope.items){
+                $scope.message = "Please enter data first should show up. 'Empty'";
+            }else if(getNumberItems($scope.items) <4){
+                $scope.message = "Enjoy!";
             }else{
-                $scope.numberItems =0;
+                $scope.message = "Too much!";
             }
             
             $scope.message = changeMessage($scope.numberItems);
         };
         
-        function changeMessage(numberItems){
-            if (numberItems == 0){
-                return "Please enter data first should show up. 'Empty";
-            }
-            else if (numberItems > 0 && numberItems <= 3){
-                return "Enjoy!";
-            }else{
-                return "Too much!";
-            }
+        function getNumberItems(items){
+            var itemsArr = items.split(',');
+            return itemsArr.length;
         }
        
         
