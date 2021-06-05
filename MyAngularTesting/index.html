@@ -1,0 +1,35 @@
+<html lang="en" ng-app="ShopApp">
+    <head>
+        <title>My Angular Testing</title>
+        <script src="angular.min.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <div ng-controller="ShopAppController">
+            <h1>Shopping site</h1>
+            <div>
+                <h2>Our Products</h2>
+                <div ng-repeat="item in shoppingList">
+                    <h3>{{$index+1}}. {{item.name}}</h3>
+                    <button ng-click="SelectProduct(item)">Select Product</button>
+                </div>
+                
+                <h2>Selected Product: {{selectedProduct.name}}</h2>
+                <input type="number" ng-model="quantity" placeholder="Quantity">
+                <button ng-click="AddToCart()">Add Cart</button>
+            </div>
+            <div>
+                <h2>Shopping Cart</h2>
+                <div ng-repeat="itemCart in shoppingCart">
+                    <h3>{{$index+1}}. {{itemCart.name}}</h3>
+                    <p>
+                        Price: {{itemCart.price | currency}}
+                        Quantity: {{itemCart.quantity}}
+                        Total:{{itemCart.price*itemCart.quantity | currency}}
+                    </p>
+                    <button ng-click="RemoveFromCart($index)">Remove</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
