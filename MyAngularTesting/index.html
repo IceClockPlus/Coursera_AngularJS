@@ -9,7 +9,9 @@
             <h1>Shopping site</h1>
             <div>
                 <h2>Our Products</h2>
-                <div ng-repeat="item in shoppingList">
+                <h4>Filter</h4> 
+                <input type="text" ng-model="search" placeholder="Filter by name">
+                <div ng-repeat="item in shoppingList | filter : search">
                     <h3>{{$index+1}}. {{item.name}}</h3>
                     <button ng-click="SelectProduct(item)">Select Product</button>
                 </div>
