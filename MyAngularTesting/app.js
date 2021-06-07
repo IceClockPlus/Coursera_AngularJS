@@ -1,33 +1,41 @@
 (function(){
     'use strict';
     angular.module('ShopApp',[])
-    .controller('ShopAppController',ShopAppController);
+    .controller('ShoppingAddController',ShoppingAddController)
+    .service('ShoppingService',ShoppingService);
 
-    ShopAppController.$inject =['$scope'];
-    function ShopAppController($scope){
-        $scope.shoppingList = shoppingList;
-        $scope.shoppingCart = [];
+    function ShoppingAddController(){
+        var itemAdder = this;
+        itemAdder.shoppingList = shoppingList;
+        itemAdder.shoppingCart = [];
 
-        $scope.selectedProduct =$scope.selectedProduct ;
+        itemAdder.selectedProduct =itemAdder.selectedProduct ;
 
-        $scope.SelectProduct = function(item){
-            $scope.selectedProduct =item;
+        itemAdder.SelectProduct = function(item){
+            itemAdder.selectedProduct =item;
         }
 
-        $scope.AddToCart= function(){
+        itemAdder.AddToCart= function(){
             var itemCart =
             {
-                name : $scope.selectedProduct.name,
-                price : $scope.selectedProduct.price,
-                quantity : $scope.quantity
+                name : itemAdder.selectedProduct.name,
+                price : itemAdder.selectedProduct.price,
+                quantity : itemAdder.quantity
             };
             console.log(itemCart);
-            $scope.shoppingCart.push(itemCart);
+            itemAdder.shoppingCart.push(itemCart);
         }
 
-        $scope.RemoveFromCart = function(index){
-            $scope.shoppingCart.splice(index,1);
+        itemAdder.RemoveFromCart = function(index){
+            itemAdder.shoppingCart.splice(index,1);
         }
+    }
+
+
+    function ShoppingService(){
+        var service = this;
+        
+        var items =[];
     }
 
 })();

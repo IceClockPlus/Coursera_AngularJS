@@ -5,31 +5,31 @@
         <script src="app.js"></script>
     </head>
     <body>
-        <div ng-controller="ShopAppController">
+        <div ng-controller="ShoppingAddController as itemAdder">
             <h1>Shopping site</h1>
             <div>
                 <h2>Our Products</h2>
                 <h4>Filter</h4> 
                 <input type="text" ng-model="search" placeholder="Filter by name">
-                <div ng-repeat="item in shoppingList | filter : search">
+                <div ng-repeat="item in itemAdder.shoppingList | filter : search">
                     <h3>{{$index+1}}. {{item.name}}</h3>
-                    <button ng-click="SelectProduct(item)">Select Product</button>
+                    <button ng-click="itemAdder.SelectProduct(item)">Select Product</button>
                 </div>
                 
-                <h2>Selected Product: {{selectedProduct.name}}</h2>
-                <input type="number" ng-model="quantity" placeholder="Quantity">
-                <button ng-click="AddToCart()">Add Cart</button>
+                <h2>Selected Product: {{itemAdder.selectedProduct.name}}</h2>
+                <input type="number" ng-model="itemAdder.quantity" placeholder="Quantity">
+                <button ng-click="itemAdder.AddToCart()">Add Cart</button>
             </div>
             <div>
                 <h2>Shopping Cart</h2>
-                <div ng-repeat="itemCart in shoppingCart">
+                <div ng-repeat="itemCart in itemAdder.shoppingCart">
                     <h3>{{$index+1}}. {{itemCart.name}}</h3>
                     <p>
                         Price: {{itemCart.price | currency}}
                         Quantity: {{itemCart.quantity}}
                         Total:{{itemCart.price*itemCart.quantity | currency}}
                     </p>
-                    <button ng-click="RemoveFromCart($index)">Remove</button>
+                    <button ng-click="itemAdder.RemoveFromCart($index)">Remove</button>
                 </div>
             </div>
         </div>
