@@ -4,9 +4,16 @@
         <script src="angular.min.js"></script>
         <title>Shopping App</title>
     </head>
-    <body>
+    <body ng-app="ShoppingListCheckOff">
+        <h1>Shopping List Check Off Application</h1>
+        <!--Section to buy items-->
+        <div ng-controller="ToBuyController as buyList">
 
-
-
+        </div>
+        
+        <!--Section to see the bought items-->
+        <div ng-controller="AlreadyBoughtController as boughtList">
+            
+        </div>
     </body>
 </html>
