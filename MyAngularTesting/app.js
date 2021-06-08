@@ -2,28 +2,27 @@
     'use strict';
     angular.module('ShopApp',[])
     .controller('ShoppingAddController',ShoppingAddController)
+    .controller('ShoppingShowController',ShoppingShowController)
     .service('ShoppingService',ShoppingService);
 
-    function ShoppingAddController(){
+    ShoppingAddController.$inject =['ShoppingService']
+    function ShoppingAddController(ShoppingService){
         var itemAdder = this;
         itemAdder.shoppingList = shoppingList;
-        itemAdder.shoppingCart = [];
+        itemAdder.shoppingCart = ShoppingService.getItems();
 
         itemAdder.selectedProduct =itemAdder.selectedProduct ;
 
-        itemAdder.SelectProduct = function(item){
-            itemAdder.selectedProduct =item;
-        }
 
-        itemAdder.AddToCart= function(){
+        itemAdder.AddToCart= function(itemSelected){
             var itemCart =
             {
-                name : itemAdder.selectedProduct.name,
-                price : itemAdder.selectedProduct.price,
+                name : itemSelected.name,
+                price : itemSelected.price,
                 quantity : itemAdder.quantity
             };
             console.log(itemCart);
-            itemAdder.shoppingCart.push(itemCart);
+            ShoppingService.AddItem(itemCart);
         }
 
         itemAdder.RemoveFromCart = function(index){
@@ -31,11 +30,22 @@
         }
     }
 
+    function ShoppingShowController(){
+        var showList = this;
+    } 
 
     function ShoppingService(){
         var service = this;
         
         var items =[];
+
+        service.AddItem = function(itemAdded){
+            items.push(itemAdded);
+        }
+
+        service.getItems = function(){
+            return items;
+        }
     }
 
 })();

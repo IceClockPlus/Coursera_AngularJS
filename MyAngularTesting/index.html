@@ -13,12 +13,14 @@
                 <input type="text" ng-model="search" placeholder="Filter by name">
                 <div ng-repeat="item in itemAdder.shoppingList | filter : search">
                     <h3>{{$index+1}}. {{item.name}}</h3>
-                    <button ng-click="itemAdder.SelectProduct(item)">Select Product</button>
+                    <input type="number" ng-model="itemAdder.quantity" placeholder="Quantity">
+                    <button ng-click="itemAdder.AddToCart(item)">Add Item</button>
                 </div>
                 
-                <h2>Selected Product: {{itemAdder.selectedProduct.name}}</h2>
+                <h2>Selected Product: {{itemAdder.aselectedProduct.name}}</h2>
+                <!--
                 <input type="number" ng-model="itemAdder.quantity" placeholder="Quantity">
-                <button ng-click="itemAdder.AddToCart()">Add Cart</button>
+                -->
             </div>
             <div>
                 <h2>Shopping Cart</h2>
