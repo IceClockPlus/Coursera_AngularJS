@@ -2,18 +2,30 @@
 <html lang="en">
     <head>
         <script src="angular.min.js"></script>
+        <script src="app.js"></script>
         <title>Shopping App</title>
     </head>
     <body ng-app="ShoppingListCheckOff">
         <h1>Shopping List Check Off Application</h1>
         <!--Section to buy items-->
-        <div ng-controller="ToBuyController as buyList">
+        <div ng-controller="ToBuyController as buyCtrl">
+            <h2>Items to Buy</h2>
+            <div ng-repeat="item in buyCtrl.buyList">
+                <h3>Buy {{item.quantity}} {{item.name}}</h3>
+                <button >Bought</button>
+            </div>
 
         </div>
-        
+
         <!--Section to see the bought items-->
-        <div ng-controller="AlreadyBoughtController as boughtList">
-            
+        <div ng-controller="AlreadyBoughtController as boughtCtrl">
+            <h2>Bought Items</h2>
+            <div ng-repeat="bought in boughtCtrl.boughtList">
+                <h3>Bought {{bought.quantity}} {{bought.name}}</h3>
+            </div>
+            <div >
+                Nothing bought yet
+            </div>
         </div>
     </body>
 </html>
