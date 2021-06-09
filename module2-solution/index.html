@@ -13,7 +13,7 @@
             <h2>To buy</h2>
             <ol>
                 <li ng-repeat="item in buyCtrl.buyList">
-                    Buy {{item.quantity}} {{item.name}} <button ng-click="buyCtrl.buyItem($index,item)" >Bought</button>
+                    Buy {{item.quantity}} {{item.name}} <button ng-click="buyCtrl.buyItem($index)" >Bought</button>
                 </li>
              </ol>
              <p ng-if="!buyCtrl.buyList.length > 0">

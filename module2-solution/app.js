@@ -10,8 +10,8 @@
         var buyCtrl = this;
         buyCtrl.buyList = ShoppingListCheckOffService.getToBuyList();
 
-        buyCtrl.buyItem = function(itemIndex,boughtItem){
-            ShoppingListCheckOffService.buyItem(itemIndex,boughtItem);
+        buyCtrl.buyItem = function(itemIndex){
+            ShoppingListCheckOffService.buyItem(itemIndex);
         }
     }
 
@@ -25,26 +25,11 @@
         var service = this;
 
         var toBuyList = [
-            {
-                name : "Cookies",
-                quantity : 20   
-            },
-            {
-                name : "Sausage",
-                quantity : 15
-            },
-            {
-                name : "Apple",
-                quantity:9
-            },
-            {
-                name : "Brownies",
-                quantity : 11
-            },
-            {
-                name : "Chips",
-                quantity : 8
-            }
+            {   name : "Cookies", quantity : 20 },
+            {   name : "Sausage", quantity : 15},
+            {   name : "Apple", quantity:9},
+            {   name : "Brownies",quantity : 11},
+            {   name : "Chips", quantity : 8}
         ]
 
         var boughtList = [];
@@ -57,11 +42,13 @@
             return boughtList;
         }
 
-        service.buyItem = function(index,item){
+        service.buyItem = function(index){
+
+            var boughtItem = toBuyList[index];
             //Remove item from toBuyList
             toBuyList.splice(index,1);
             //Insert item into boughtList
-            boughtList.push(item);
+            boughtList.push(boughtItem);
         }
     }
 
