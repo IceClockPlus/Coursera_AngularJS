@@ -3,29 +3,33 @@
     <head>
         <script src="angular.min.js"></script>
         <script src="app.js"></script>
+        <link rel="stylesheet" href="style.css">
         <title>Shopping App</title>
     </head>
     <body ng-app="ShoppingListCheckOff">
         <h1>Shopping List Check Off Application</h1>
         <!--Section to buy items-->
-        <div ng-controller="ToBuyController as buyCtrl">
-            <h2>Items to Buy</h2>
-            <div ng-repeat="item in buyCtrl.buyList">
-                <h3>Buy {{item.quantity}} {{item.name}}</h3>
-                <button >Bought</button>
-            </div>
-
+        <div id="buyList" ng-controller="ToBuyController as buyCtrl">
+            <h2>To buy</h2>
+            <ol>
+                <li ng-repeat="item in buyCtrl.buyList">
+                    Buy {{item.quantity}} {{item.name}} <button ng-click="buyCtrl.buyItem($index,item)" >Bought</button>
+                </li>
+             </ol>
+             <p ng-if="!buyCtrl.buyList.length > 0">
+                Everything is bought!  
+             </p>
         </div>
 
         <!--Section to see the bought items-->
-        <div ng-controller="AlreadyBoughtController as boughtCtrl">
-            <h2>Bought Items</h2>
+        <div id="boughtList" ng-controller="AlreadyBoughtController as boughtCtrl">
+            <h2>Already bought</h2>
             <div ng-repeat="bought in boughtCtrl.boughtList">
-                <h3>Bought {{bought.quantity}} {{bought.name}}</h3>
+                <p>Bought {{bought.quantity}} {{bought.name}}</p>
             </div>
-            <div >
+            <p ng-if="!boughtCtrl.boughtList.length>0 ">
                 Nothing bought yet
-            </div>
+            </p>
         </div>
     </body>
 </html>
