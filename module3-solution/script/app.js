@@ -12,6 +12,7 @@
             templateUrl : 'foundItems.html',
             scope :{
                 listItems : '<',
+                onRemove : '&'
             }            
         };
         console.log(ddo);
@@ -41,6 +42,7 @@
         }
 
         narrowCtrl.removeItem = function(indexItem){
+            console.log(indexItem)
             narrowCtrl.found.splice(indexItem,1);
         }
     }

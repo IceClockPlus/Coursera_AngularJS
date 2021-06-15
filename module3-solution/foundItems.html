@@ -15,7 +15,7 @@
             <td>{{item.short_name}}</td>
             <td>{{item.description}}</td>
             <td>
-                <button type="button" class="btn btn-danger">Remove</button>
+                <button type="button" class="btn btn-danger" ng-click="onRemove({index : $index})">Don't want this one!</button>
             </td>
         </tr>
     </tbody>
