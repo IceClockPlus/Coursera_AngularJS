@@ -1,15 +1,22 @@
-<table class="table">
+<table class="table table-stripped">
     <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">SHort Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="item in items">
-            
+        <tr ng-repeat="item in listItems.found">
+            <th>{{$index}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.short_name}}</td>
+            <td>{{item.description}}</td>
+            <td>
+                <button type="button" class="btn btn-danger">Remove</button>
+            </td>
         </tr>
     </tbody>
 </table>

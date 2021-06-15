@@ -11,24 +11,26 @@
         var ddo ={
             templateUrl : 'foundItems.html',
             scope :{
-                items : '<'
-            },
-            controller : 
-        }
+                listItems : '<',
+            }            
+        };
+        console.log(ddo);
+        return ddo;
     }
 
     /**CONTROLLERS */
     NarrowItDownController.$inject = ['MenuSearchService']
     function NarrowItDownController(MenuSearchService){
         var narrowCtrl = this;
+        narrowCtrl.found = [];
 
         narrowCtrl.getMatchedMenuItems = function(searchTerm){
             //Check if the string contains a value
             if(searchTerm){
                 var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
                 promise.then(function(response){
-                    narrowCtrl.found = response.data;
-
+                    narrowCtrl.found = response;
+                    console.log(narrowCtrl.found);
                 })
                 .catch(function(error){
                     console.log(error);
@@ -36,6 +38,10 @@
             }else{
                 narrowCtrl.found = [];
             }
+        }
+
+        narrowCtrl.removeItem = function(indexItem){
+            narrowCtrl.found.splice(indexItem,1);
         }
     }
 
@@ -66,7 +72,6 @@
                         foundItems.push(item);
                     }
                 }
-                console.log(foundItems);
                 return foundItems;
             });
         }
