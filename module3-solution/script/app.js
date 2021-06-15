@@ -12,7 +12,8 @@
             templateUrl : 'foundItems.html',
             scope :{
                 listItems : '<',
-                onRemove : '&'
+                onRemove : '&',
+                resultMessage :'@'
             }            
         };
         console.log(ddo);
@@ -24,27 +25,45 @@
     function NarrowItDownController(MenuSearchService){
         var narrowCtrl = this;
         narrowCtrl.found = [];
+        narrowCtrl.resultMessage = "";
 
         narrowCtrl.getMatchedMenuItems = function(searchTerm){
             //Check if the string contains a value
-            if(searchTerm){
-                var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
-                promise.then(function(response){
-                    narrowCtrl.found = response;
-                    console.log(narrowCtrl.found);
-                })
-                .catch(function(error){
-                    console.log(error);
-                })
-            }else{
+            if(!searchTerm){
                 narrowCtrl.found = [];
+                insertResultMessage();
+                return;
             }
+
+            var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
+            promise.then(function(response){
+                narrowCtrl.found = response;
+                if(narrowCtrl.found.length == 0 ){
+                    insertResultMessage();
+                }else{
+                    removeResultMessage();
+                }
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+            
+
         }
 
         narrowCtrl.removeItem = function(indexItem){
             console.log(indexItem)
             narrowCtrl.found.splice(indexItem,1);
         }
+
+        function removeResultMessage(){
+            narrowCtrl.resultMessage = "";
+        }
+
+        function insertResultMessage(){
+            narrowCtrl.resultMessage="Nothing found";
+        }
+
     }
 
     
