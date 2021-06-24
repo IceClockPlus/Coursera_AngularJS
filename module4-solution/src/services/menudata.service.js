@@ -19,7 +19,13 @@
         }
 
         serv.getItemsForCategory = function(categoryShortName){
-            
+            return $http({
+                method: 'GET',
+                url: (ApiBasePath + "/menu_items.json?category=" + categoryShortName)
+            }).then(function(response){
+                console.log('Response getItemsForCategory:'+response);
+                return response.data;
+            });
         }
     }
 
