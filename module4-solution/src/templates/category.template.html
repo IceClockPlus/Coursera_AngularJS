@@ -1,1 +1,9 @@
 <h1>Select your category, please</h1>
+
+<div class="container">
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action" ng-repeat="item in catCtrl.categories">
+            {{item.name}}
+        </a>
+    </div>
+</div>

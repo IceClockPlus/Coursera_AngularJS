@@ -15,7 +15,13 @@
         })
         .state('category',{
             url: '/category',
-            templateUrl : 'src/templates/category.template.html'
+            templateUrl : 'src/templates/category.template.html',
+            controller: 'CategoriesController as catCtrl',
+            resolve:{
+                categories:['MenuDataService',function(MenuDataService){
+                    return MenuDataService.getAllCategory();
+                }]
+            }
         });
     }
 })();
