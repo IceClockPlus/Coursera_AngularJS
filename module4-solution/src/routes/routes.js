@@ -27,6 +27,9 @@
             url: '/items/{catShortName}',
             templateUrl: 'src/templates/itemlist.template.html',
             controller: 'ItemListController as ctrl',
+            params:{
+                catShortName: null
+            },
             resolve: {
                 items: ['$stateParams','MenuDataService',function($stateParams,MenuDataService){
                     return MenuDataService.getItemsForCategory($stateParams.catShortName);
