@@ -13,8 +13,8 @@
             url: '/',
             templateUrl:'src/templates/home.template.html'
         })
-        .state('category',{
-            url: '/category',
+        .state('categories',{
+            url: '/categories',
             templateUrl : 'src/templates/categorylist.template.html',
             controller: 'CategoryListController as catList',
             resolve:{
@@ -23,10 +23,15 @@
                 }]
             }
         })
-        .state('category.items',{
+        .state('categories.items',{
             url: '/items/{catShortName}',
             templateUrl: 'itemlist.template.html',
-            controller: 'ItemListController as ctrl'
+            controller: 'ItemListController as ctrl',
+            resolve: {
+                items: ['$stateParams','MenuDataService',function($stateParams,MenuDataService){
+                    return MenuDataService.getItemsForCategory($stateParams.catShortName);
+                }]
+            }
         });
     }
 })();
