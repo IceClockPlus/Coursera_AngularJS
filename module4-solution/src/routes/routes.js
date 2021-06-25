@@ -22,6 +22,11 @@
                     return MenuDataService.getAllCategory();
                 }]
             }
+        })
+        .state('category.items',{
+            url: '/items/{catShortName}',
+            templateUrl: 'itemlist.template.html',
+            controller: 'ItemListController as ctrl'
         });
     }
 })();
