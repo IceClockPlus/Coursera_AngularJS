@@ -15,10 +15,10 @@
         })
         .state('category',{
             url: '/category',
-            templateUrl : 'src/templates/category.template.html',
-            controller: 'CategoriesController as catCtrl',
+            templateUrl : 'src/templates/categorylist.template.html',
+            controller: 'CategoryListController as catList',
             resolve:{
-                categories:['MenuDataService',function(MenuDataService){
+                categoryList:['MenuDataService',function(MenuDataService){
                     return MenuDataService.getAllCategory();
                 }]
             }
