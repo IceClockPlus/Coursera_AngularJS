@@ -25,7 +25,7 @@
         })
         .state('categories.items',{
             url: '/items/{catShortName}',
-            templateUrl: 'itemlist.template.html',
+            templateUrl: 'src/templates/itemlist.template.html',
             controller: 'ItemListController as ctrl',
             resolve: {
                 items: ['$stateParams','MenuDataService',function($stateParams,MenuDataService){
