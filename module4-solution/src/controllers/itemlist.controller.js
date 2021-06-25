@@ -7,7 +7,7 @@
     function ItemListController(items){
         console.log(items);
         var ctrl = this;
-        ctrl.items = items;
+        ctrl.items = items.menu_items;
     }
 
 })();
