@@ -7,7 +7,9 @@
 
     SignUpController.$inject = ['MenuService']
     function SignUpController(MenuService){
+        var signUpCtrl = this;
 
+        
     }
 
 })();
