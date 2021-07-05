@@ -10,8 +10,16 @@
         var $signUpCtrl = this;
 
         $signUpCtrl.submit = function(){
-            console.log($signUpCtrl.user);
-            
+            console.log($signUpCtrl.user.shortname);
+            var promise = MenuService.getFavMenuItem($signUpCtrl.user.shortname);
+            promise.then(function(response){
+                console.log(response);
+                $signUpCtrl.user.favMenuItem =response.data;
+                $signUpCtrl.itemFound =true;
+            }).catch(function(error){
+                console.log(error);
+                $signUpCtrl.itemFound =false;
+            })
         }
 
     }
