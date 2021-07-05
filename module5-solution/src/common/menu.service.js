@@ -30,6 +30,7 @@ function MenuService($http, ApiPath) {
     });
   };
 
+
   service.getFavMenuItem = function(shortName){
     return $http({
         method:'GET',
@@ -37,7 +38,16 @@ function MenuService($http, ApiPath) {
     }).then(function(response){
         return response.data;
     })
-}
+  }
+
+  service.setUser = function(user){
+    service.user = user;
+  }
+
+  service.getUser = function(){
+    return service.user;
+  }
+
 }
 
 
