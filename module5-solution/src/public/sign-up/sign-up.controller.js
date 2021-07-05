@@ -7,9 +7,13 @@
 
     SignUpController.$inject = ['MenuService']
     function SignUpController(MenuService){
-        var signUpCtrl = this;
+        var $signUpCtrl = this;
 
-        
+        $signUpCtrl.submit = function(){
+            console.log($signUpCtrl.user);
+            
+        }
+
     }
 
 })();
