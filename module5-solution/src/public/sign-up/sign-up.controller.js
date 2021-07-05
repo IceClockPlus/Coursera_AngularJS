@@ -10,18 +10,31 @@
         var $signUpCtrl = this;
 
         $signUpCtrl.submit = function(){
-            console.log($signUpCtrl.user.shortname);
+
             var promise = MenuService.getFavMenuItem($signUpCtrl.user.shortname);
             promise.then(function(response){
-                console.log(response);
-                $signUpCtrl.user.favMenuItem =response.data;
-                $signUpCtrl.itemFound =true;
+                //Store the favorite menu item in user.favMenuItem
+                $signUpCtrl.user.favMenuItem = response;
+                //Save the user data in the MenuService
+                console.log($signUpCtrl.user);
+                MenuService.setUser($signUpCtrl.user);
+                //Show the success message
+                showSuccessMessage();
             }).catch(function(error){
                 console.log(error);
-                $signUpCtrl.itemFound =false;
+                showErrorMessage();
             })
         }
 
+        function showSuccessMessage() {
+            $signUpCtrl.success =true;
+            $signUpCtrl.error = false;
+        }
+        
+        function showErrorMessage(){
+            $signUpCtrl.success = false;
+            $signUpCtrl.error = true;
+        }
     }
 
 })();
