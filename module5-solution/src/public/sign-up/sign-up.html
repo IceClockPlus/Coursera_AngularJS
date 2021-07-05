@@ -1,11 +1,41 @@
-<form name="userReg" novalidate> 
-    <input type="text" name="firstName" placeholder="First Name">
-    <br>
-    <input type="text" name="lastName" placeholder="Last Name">
-    <br>    
-    <input type="email" name="email" placeholder="email">
-    <br>
-    <input type="tel" name="phoneNum" placeholder="Phone number">
-    <br>
-    <input type="text" name="shortname" placeholder="Menu number">
-</form>
+<div class="container">
+    <h2>Sign Up</h2>
+    <form name="userReg" novalidate>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="text" name="firstName" placeholder="First Name" class="form-control"
+                ng-model="signUpCtrl.user.firstName"
+                required
+                minlength="3"
+                maxlength="25">
+                <span ng-if="(userReg.firstName.$error.minlength || 
+                userReg.firstName.$error.required) && userReg.firstName.$touched">
+                    First name must be at least 3 characters long
+                </span>
+                <br>
+            </div>
+            <div class="form-group col-md-6">
+                <input type="text" name="lastName" placeholder="Last Name" class="form-control"
+                ng-model="signUpCtrl.user.lastName"
+                >
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="email" name="email" placeholder="email" class="form-control"
+                ng-model="signUpCtrl.user.email">
+
+            </div>
+            <div class="form-group col-md-6">
+                <input type="tel" name="phone" placeholder="Phone number" class="form-control"
+                ng-model="signUpCtrl.user.phone">
+
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" name="shortname" placeholder="Menu number" class="form-control"
+            ng-model="signUpCtrl.user.shortname">
+        </div>
+    </form>
+</div>
