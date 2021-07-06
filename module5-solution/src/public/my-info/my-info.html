@@ -1,0 +1,27 @@
+<h2>My Info</h2>
+<!-- Section if the user is not registered-->
+<div class="container" ng-if="!myInfoCtrl.isUserRegistered()">
+    <div class="alert alert-warning" role="alert">
+        Not Signed Up Yet. <a ui-sref="public.signup"> Sign up Now!</a>
+      </div>
+</div>
+
+<!-- Section to show the user profile if they signed up-->
+<div class="container" ng-if="myInfoCtrl.isUserRegistered()">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>About me</h2>
+            First name: {{myInfoCtrl.user.firstName}}
+            <br>
+            Last name: {{myInfoCtrl.user.lastName}}
+            <br>
+            Email: {{myInfoCtrl.user.email}}
+            <br>
+            Phone: {{myInfoCtrl.user.phone}}
+        </div>
+        <div class="col-md-6">
+            <h2>My favorite dish</h2>
+            <menu-item menu-item="myInfoCtrl.user.favMenuItem"></menu-item>
+        </div>
+    </div>
+</div>
